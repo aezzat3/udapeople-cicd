@@ -29,9 +29,9 @@ version: 2.1
 #             # Install Node.js LTS version as our base Node.js version
 #             curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 #             sudo apt install -y nodejs
-#             # Use n version manager to use Node.js v13.8.0
+#             # Use n version manager to use Node.js v16.13.0
 #             sudo npm install --global n
-#             sudo n 13.8.0
+#             sudo n 16.13.0
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
 #     parameters:
@@ -69,7 +69,7 @@ version: 2.1
 jobs:
   build-frontend:
     docker:
-      - image: cimg/node:13.8.0
+      - image: cimg/node:16.13.0
     steps:
       - checkout
       - restore_cache:
@@ -86,7 +86,7 @@ jobs:
 
   build-backend:
     docker:
-      - image: cimg/node:13.8.0
+      - image: cimg/node:16.13.0
     steps:
       - checkout
       - restore_cache:
@@ -103,7 +103,7 @@ jobs:
 
   test-frontend:
     docker:
-      - image: cimg/node:13.8.0
+      - image: cimg/node:16.13.0
     steps:
       - checkout
       - restore_cache:
@@ -116,7 +116,7 @@ jobs:
             npm test
   test-backend:
     docker:
-      - image: cimg/node:13.8.0
+      - image: cimg/node:16.13.0
     steps:
       - checkout
       - restore_cache:
@@ -127,35 +127,35 @@ jobs:
             cd backend
             npm install
             npm test
-  # scan-frontend:
-  #   docker:
-  #     - image: cimg/node:13.8.0
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         keys: [frontend-deps]
-  #     - run:
-  #         name: Front-end Scan
-  #         command: |
-  #           cd frontend
-  #           npm install
-  #           npm audit fix --force --audit-level=critical
-  #           npm audit --audit-level=critical
-  # scan-backend:
-  #   docker:
-  #     - image: cimg/node:13.8.0
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         keys: [backend-deps]
-  #     - run:
-  #         name: Back-end Scan
-  #         command: |
-  #           cd backend
-  #           npm install
-  #           npm audit fix --force --audit-level=critical
-  #           npm audit fix --force --audit-level=critical
-  #           npm audit --audit-level=critical
+  scan-frontend:
+    docker:
+      - image: cimg/node:16.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-deps]
+      - run:
+          name: Front-end Scan
+          command: |
+            cd frontend
+            npm install
+            npm audit fix --force --audit-level=critical
+            npm audit --audit-level=critical
+  scan-backend:
+    docker:
+      - image: cimg/node:16.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [backend-deps]
+      - run:
+          name: Back-end Scan
+          command: |
+            cd backend
+            npm install
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
+            npm audit --audit-level=critical
   # deploy-infrastructure:
   #   docker:
   #     - image: cimg/base:stable
@@ -215,7 +215,7 @@ jobs:
 
   # run-migrations:
   #   docker:
-  #     - image: cimg/node:13.8.0
+  #     - image: cimg/node:16.13.0
   #   steps:
   #     - checkout
   #     - install_awscli
