@@ -34,7 +34,7 @@
     "@types/redux-actions": "2.6.1",
     "@types/webpack": "4.4.34",
     "@types/webpack-env": "1.13.9",
-    "babel-core": "5.8.20 - 7.0.0-beta.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "enzyme": "^3.10.0",
@@ -62,7 +62,7 @@
     "tslint": "^5.18.0",
     "typescript": "^3.5.3",
     "url-loader": "^2.0.1",
-    "webpack": "^4.35.3",
+    "webpack": "^5.75.0",
     "webpack-cleanup-plugin": "^0.3.1",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^4.11.1"
@@ -104,7 +104,7 @@
     "redux": "^4.0.3",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
-    "sweetalert2": "^8.13.4"
+    "sweetalert2": "^11.4.8"
   },
   "jest": {
     "rootDir": "src",
